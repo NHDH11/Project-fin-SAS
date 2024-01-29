@@ -29,3 +29,19 @@ void ajouterTache(Tache* taches, int* nombreTaches) {
         printf("La liste des taches est pleine.\n");
     }
 }
+
+void afficherListeTaches(Tache* taches, int nombreTaches) {
+    if (nombreTaches > 0) {
+        printf("Liste des taches :\n");
+        for (int i = 0; i < nombreTaches; i++) {
+            printf("Tache %d :\n", i + 1);
+            printf("Description : %s\n", taches[i].description);
+            printf("Date d'echeance : %s\n", taches[i].dateEcheance);
+            printf("Priorite : %d\n", taches[i].priorite);
+            printf("Statut : %s\n", taches[i].statut == 0 ? "Incomplet" : "Complet");
+            printf("\n");
+        }
+    } else {
+        printf("Aucune tache disponible.\n");
+    }
+}
