@@ -45,3 +45,23 @@ void afficherListeTaches(Tache* taches, int nombreTaches) {
         printf("Aucune tache disponible.\n");
     }
 }
+
+void modifierTache(Tache* taches, int nombreTaches) {
+    int choix;
+    afficherListeTaches(taches, nombreTaches);
+    printf("Entrez le numero de la tache a modifier : ");
+    scanf("%d", &choix);
+    if (choix > 0 && choix <= nombreTaches) {
+        printf("Nouvelle description : ");
+        scanf(" %[^\n]s", taches[choix - 1].description);
+        printf("Nouvelle date d'echeance : ");
+        scanf(" %s", taches[choix - 1].dateEcheance);
+        printf("Nouvelle priorite (1 - Faible, 2 - Moyenne, 3 - Haute) : ");
+        scanf("%d", &taches[choix - 1].priorite);
+        printf("Nouveau statut ( 1 - Complet, 0 - Incomplet) : ");
+        scanf("%d", &taches[choix - 1].statut);
+        printf("Tache modifiee avec succes.\n");
+    } else {
+        printf("Numero de tache invalide.\n");
+    }
+}
