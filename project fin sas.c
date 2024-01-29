@@ -180,4 +180,63 @@ void chargerTachesDepuisFichier(Tache* taches, int* nombreTaches) {
     fclose(fichier); // Fermeture du fichier
 }
 
+int main() {
+    Tache taches[MAX_TACHES];
+    int nombreTaches = 0;
+    int choix;
+
+    chargerTachesDepuisFichier(taches, &nombreTaches);
+    printf("\nBienvenue sur l'application GESTION DES TACHES\n");
+    printf("N.B: respecter la forme des dates ANNEE-MOIS-JOUR dans la saisie !!!\n");
+    printf("Logiquement tous les taches seront declarees incompletes dans la premiere saisie, pour les rendre completes , voir l'option 3\n");
+
+    do {
+
+        printf("\nMenu Principal\n");
+        printf("1. Ajouter une tache\n");
+        printf("2. Afficher la liste des taches\n");
+        printf("3. Modifier une tache\n");
+        printf("4. Supprimer une tache\n");
+        printf("5. Ordonner les taches par date d'echeance\n");
+        printf("6. filtrer par priorite\n");
+        printf("7. filtrer par statut\n");
+        printf("0. Quitter\n");
+
+        printf("Entrez votre choix : ");
+        scanf("%d", &choix);
+
+        switch (choix) {
+            case 1:
+                ajouterTache(taches, &nombreTaches);
+                break;
+            case 2:
+                afficherListeTaches(taches, nombreTaches);
+                break;
+            case 3:
+                modifierTache(taches, nombreTaches);
+                break;
+            case 4:
+                supprimerTache(taches, &nombreTaches);
+                break;
+            case 5:
+                trierTachesParDate(taches, nombreTaches);
+                break;
+            case 6:
+                filtrerParPriorite(taches, nombreTaches);
+                break;
+            case 7:
+                filtrerParStatut(taches, nombreTaches);
+                break;
+            case 0:
+                printf("Au revoir !\n");
+                break;
+            default:
+                printf("Choix invalide. Veuillez reessayer.\n");
+        }
+    } while (choix != 0);
+
+    sauvegarderTachesDansFichier(taches, nombreTaches);
+
+    return 0;
+}
 
