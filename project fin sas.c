@@ -108,3 +108,22 @@ void trierTachesParDate(Tache* taches, int nombreTaches) {
     printf("Taches triees par date d'echeance :\n");
     afficherListeTaches(taches, nombreTaches);
 }
+
+void filtrerParPriorite(Tache* taches, int nombreTaches) {
+    int prioriteFiltre;
+    printf("Entrez la priorite a filtrer : ");
+    scanf("%d", &prioriteFiltre);
+    printf("Taches avec priorite %d :\n", prioriteFiltre);
+    for (int i = 0; i < nombreTaches; i++) {
+        if (taches[i].priorite == prioriteFiltre) {
+            printf("Description : %s\n", taches[i].description);
+            printf("Date d'echeance : %s\n", taches[i].dateEcheance);
+            printf("Priorite : %d\n", taches[i].priorite);
+            printf("Statut : %s\n", taches[i].statut == 0 ? "Incomplet" : "Complet");
+            printf("\n");
+        }
+        else {
+            printf("il n'existe aucune tache avec cette priorite choisie\n");
+        }
+    }
+}
