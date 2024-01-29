@@ -65,3 +65,19 @@ void modifierTache(Tache* taches, int nombreTaches) {
         printf("Numero de tache invalide.\n");
     }
 }
+
+void supprimerTache(Tache* taches, int* nombreTaches) {
+    int choix;
+    afficherListeTaches(taches, *nombreTaches);
+    printf("Entrez le numero de la tache a supprimer : ");
+    scanf("%d", &choix);
+    if (choix > 0 && choix <= *nombreTaches) {
+        for (int i = choix - 1; i < *nombreTaches - 1; i++) {
+            taches[i] = taches[i + 1];
+        }
+        (*nombreTaches)--;
+        printf("Tache supprimee avec succes.\n");
+    } else {
+        printf("Numero de tache invalide.\n");
+    }
+}
