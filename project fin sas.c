@@ -81,3 +81,30 @@ void supprimerTache(Tache* taches, int* nombreTaches) {
         printf("Numero de tache invalide.\n");
     }
 }
+
+void trierTachesParDate(Tache* taches, int nombreTaches) {
+    int i, j;
+    Tache temp;
+
+    for (i = 0; i < nombreTaches - 1; i++) {
+        for (j = 0; j < nombreTaches - i - 1; j++) {
+            // Comparaison des dates d'echeance
+            int annee1, mois1, jour1;
+            int annee2, mois2, jour2;
+
+            sscanf(taches[j].dateEcheance, "%d-%d-%d", &annee1, &mois1, &jour1);
+            sscanf(taches[j + 1].dateEcheance, "%d-%d-%d", &annee2, &mois2, &jour2);
+
+            // Comparaison des composantes des dates
+            if (annee1 > annee2 || (annee1 == annee2 && mois1 > mois2) || (annee1 == annee2 && mois1 == mois2 && jour1 > jour2)) {
+                // echange des teches si la date d'echeance est plus grande
+                temp = taches[j];
+                taches[j] = taches[j + 1];
+                taches[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("Taches triees par date d'echeance :\n");
+    afficherListeTaches(taches, nombreTaches);
+}
