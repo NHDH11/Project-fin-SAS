@@ -127,3 +127,23 @@ void filtrerParPriorite(Tache* taches, int nombreTaches) {
         }
     }
 }
+
+void filtrerParStatut(Tache* taches, int nombreTaches) {
+    int statutFiltre;
+    printf("Entrez le statut a filtrer (0 pour incomplet, 1 pour complet) : ");
+    scanf("%d", &statutFiltre);
+    printf("Taches avec statut %s :\n", statutFiltre == 0 ? "Incomplet" : "Complet");
+    for (int i = 0; i < nombreTaches; i++) {
+        if (taches[i].statut == statutFiltre) {
+            printf("Description : %s\n", taches[i].description);
+            printf("Date d'echeance : %s\n", taches[i].dateEcheance);
+            printf("Priorite : %d\n", taches[i].priorite);
+            printf("Statut : %s\n", taches[i].statut == 0 ? "Incomplet" : "Complet");
+            printf("\n");
+        }
+        else {
+            printf("choix invalide , veillez reessayer\n");
+        }
+    }
+}
+
