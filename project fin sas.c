@@ -146,4 +146,38 @@ void filtrerParStatut(Tache* taches, int nombreTaches) {
         }
     }
 }
+void sauvegarderTachesDansFichier(Tache* taches, int nombreTaches) {
+    FILE *fichier;
+    fichier = fopen("taches.txt", "w"); // Ouverture du fichier en mode ecriture
+
+    if (fichier == NULL) {
+        printf("Erreur lors de l'ouverture du fichier.");
+        return;
+    }
+
+    for (int i = 0; i < nombreTaches; i++) {
+        fprintf(fichier, "%s;%s;%d;%d\n", taches[i].description, taches[i].dateEcheance, taches[i].priorite, taches[i].statut);
+    }
+
+    fclose(fichier); // Fermeture du fichier
+}
+
+void chargerTachesDepuisFichier(Tache* taches, int* nombreTaches) {
+    FILE *fichier;
+    fichier = fopen("taches.txt", "r"); // Ouverture du fichier en mode lecture
+
+    if (fichier == NULL) {
+        printf("Fichier inexistant ou impossible a ouvrir.");
+        return;
+    }
+
+    *nombreTaches = 0; // Reinitialisation du nombre de taches
+
+    while (fscanf(fichier, "%[^;];%[^;];%d;%d\n", taches[*nombreTaches].description, taches[*nombreTaches].dateEcheance, &taches[*nombreTaches].priorite, &taches[*nombreTaches].statut) != EOF) {
+        (*nombreTaches)++;
+    }
+
+    fclose(fichier); // Fermeture du fichier
+}
+
 
